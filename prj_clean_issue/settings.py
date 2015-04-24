@@ -89,11 +89,11 @@ ON_HEROKU = os.environ.get('ON_HEROKU')
 
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 if (ON_HEROKU):
-    DATABASES['default']['NAME'] = 'postgresql'
+    # DATABASES['default']['NAME'] = 'postgresql'
 else:
     DATABASES['default']['NAME'] = 'alexpashevich'
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 
 # Internationalization
