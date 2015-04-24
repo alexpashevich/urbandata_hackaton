@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'timeschedule_analysis',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,17 +76,24 @@ WSGI_APPLICATION = 'prj_clean_issue.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 import dj_database_url
-DATABASES = {
+# DATABASES = {
     # 'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-    'default': dj_database_url.config()
-}
+    # 'default': dj_database_url.config()
+# }
 
 # Parse database configuration from $DATABASE_URL
+ON_HEROKU = os.environ.get('ON_HEROKU')
 
-# DATABASES['default'] =  dj_database_url.config()
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
+DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+if (ON_HEROKU):
+    DATABASES['default']['NAME'] = 'postgresql'
+else:
+    DATABASES['default']['NAME'] = 'alexpashevich'
 
 
 # Internationalization
@@ -94,7 +102,7 @@ DATABASES = {
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
