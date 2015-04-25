@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -90,8 +88,6 @@ ON_HEROKU = os.environ.get('ON_HEROKU')
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
 if not ON_HEROKU:
-    # DATABASES['default']['NAME'] = 'postgresql'
-# else:
     DATABASES['default']['NAME'] = 'alexpashevich'
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
@@ -116,7 +112,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 LOGIN_REDIRECT_URL = '/'
