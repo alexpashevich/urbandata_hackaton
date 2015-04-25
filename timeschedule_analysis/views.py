@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 import json
 
+import logging
 # from moocs.models import Mooc, Lesson, Module
 
 
@@ -26,6 +27,8 @@ def dashboard(request):
 def get_all_bins(request):
     # if request.method == 'GET':
     bins = Bin.objects.all()
+    logger = logging.getLogger('testlogger')
+    logger.info('This is a simple log message')
     # print(bins)
     # return JsonResponse({'a': 1})
     return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
