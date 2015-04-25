@@ -145,7 +145,7 @@
 					balloonWithFields.open(coords, {
 						contentHeader: 'Введите объём контейнера',
 						contentBody: [
-							'<form class = "coolForm" id="addBin" method = "GET"><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
+							'<form class = "coolForm" id="addBin" method = "POST"><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
 						]
 					})	
 					var realAdress,
@@ -161,25 +161,31 @@
 							console.log('fuck');
 					});
 
-					//var weigth = $('#addBin').val();
-					//alert(weigth);
+					
 
-					/*$.ajax({
-						type: 'POST',
-						url: 'https://ancient-mountain-6186.herokuapp.com/send_new_bin/',
-						data : {
-							'x_coord': xCoord,
-							'y_coord': yCoord,
-							'realAdress' : realAdress,
-						},
-						success: function() {
-							console.log('Success');
-						},
-						error: function () {
-							console.log('Fail');
-						}
-					});*/
-					console.log('request sent');
+					$('#addBin').submit(function(e){
+						e.preventDefault();
+						var weigth = $('#addBin').val();
+						alert(weigth);
+						$.ajax({
+							type: 'POST',
+							url: 'https://ancient-mountain-6186.herokuapp.com/send_new_bin/',
+							data : {
+								'x_coord': xCoord,
+								'y_coord': yCoord,
+								'realAdress' : realAdress,
+							},
+							success: function() {
+								console.log('Success');
+							},
+							error: function () {
+								console.log('Fail');
+							}
+						});
+						console.log('request sent');
+					}
+						)
+					
 
 				for (i = 0; i < 25; ++i) {
 					myMap.geoObjects.add(containers[i]);
