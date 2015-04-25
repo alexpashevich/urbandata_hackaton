@@ -21,7 +21,6 @@ import os
 SECRET_KEY = 'ran@0ch@8h&sb#_48=#-^c8j+wot2hdmoortzb^q_3#_n(*wnt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,6 +90,11 @@ if not ON_HEROKU:
     DATABASES['default']['NAME'] = 'alexpashevich'
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
+
+DEBUG = True
+
+if ON_HEROKU:
+    DEBUG = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
