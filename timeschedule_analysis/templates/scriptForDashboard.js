@@ -11,8 +11,8 @@ $(document).ready(function() {
 			balloonMaxWidth: 1500
 		});
 
-		var randomValue = function () {
-			return Math.random() * (b - a)
+		var randomValue = function (a, b) {
+			return Math.random() * (b - a);
 		}
 
 		var containers = [];
@@ -58,7 +58,7 @@ $(document).ready(function() {
 				var realAdressText = realAdress.properties.get('name');
 				var xCoord = coords[0];
 				var yCoord = coords[1];
-				alert (xCoord, yCoord);
+				alert (xCoord + ":" + yCoord);
 			})
 		})
 
