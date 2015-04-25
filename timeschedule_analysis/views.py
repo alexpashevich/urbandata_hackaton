@@ -32,7 +32,7 @@ def get_all_bins(request):
     logger.info(bins)
     # logger.info(JsonResponse({'a': 1}))
     # logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
-    return JsonResponse(bins)
+    return JsonResponse({'a': 1})
     # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
 
 def send_new_bin(request):
