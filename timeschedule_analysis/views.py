@@ -7,9 +7,6 @@ import json
 # from moocs.models import Mooc, Lesson, Module
 
 
-def index(request):
-    return render(request, 'index.html')
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -25,3 +22,8 @@ def register(request):
 @login_required(login_url='/login')
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def get_all_bins(request):
+    # if request.method == 'GET':
+    bins = Bin.objects.all()
+    return HttpResponse(json.dumps(bins), content_type="application/json")

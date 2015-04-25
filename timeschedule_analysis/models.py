@@ -10,6 +10,7 @@ class Bin(models.Model):
     y_coordinate = models.FloatField(null=True)
     address = models.TextField(null=True)
     volume = models.IntegerField(null=True)
+    cur_filling = models.IntegerField(null=True)
     city = models.ForeignKey(City, null=True)
     def __unicode__(self):
         return "Container with address " + self.address
