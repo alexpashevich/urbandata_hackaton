@@ -11,29 +11,32 @@ $(document).ready(function() {
 			balloonMaxWidth: 1500
 		});
 
-
-		myGeoObject = new ymaps.GeoObject({
-			geometry: {
-				type: 'Rectangle',
-				coordinates: [
-	                [55.93488, 37.51885],
-	                [55.935, 37.519]
-	            ], 
-	        },
-	            properties: {
-	            	hintContent: 'Контейнер #7',
-	
-	            	balloonContentBody: [
-	            	'<div class = "ball"> Улица Первомайская, дом 40 <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
-	       
-	            }
-			}, {
-				draggable: true,
-		        // Цвет и прозрачность заливки.
-		        fillColor: '#ffff0022',
-		        // Цвет и прозрачность границ.
-		        
-		});
+		var containers = [];
+		for (i = 0; i < 15; i++) {
+			myGeoObject = new ymaps.GeoObject({
+				geometry: {
+					type: 'Rectangle',
+					coordinates: [
+		                [55.93488, 37.51885],
+		                [55.935, 37.519]
+		            ], 
+		        },
+		            properties: {
+		            	hintContent: 'Контейнер #7',
+		
+		            	balloonContentBody: [
+		            	'<div class = "ball"> Улица Первомайская, дом 40 <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
+		       
+		            }
+				}, {
+					draggable: true,
+			        // Цвет и прозрачность заливки.
+			        fillColor: '#ffff0022',
+			        // Цвет и прозрачность границ.
+			        
+			});
+			containers.push(myGeoObject);
+		}
 
 		//важно
 		myMap.events.add('click', function(e) {
