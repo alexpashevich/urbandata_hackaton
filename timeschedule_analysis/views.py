@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 import json
 
 import logging
-# from moocs.models import Mooc, Lesson, Module
+from timeschedule_analysis.models import Bin, Sample, City
 
 logger = logging.getLogger('testlogger')
 
@@ -27,11 +27,11 @@ def dashboard(request):
 
 def get_all_bins(request):
     # if request.method == 'GET':
-    # bins = Bin.objects.all()
+    bins = Bin.objects.all()
     logger.info('get_all_bins function')
-    logger.info(JsonResponse({'a': 1}))
-    logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
-    return JsonResponse({'a': 1})
+    # logger.info(JsonResponse({'a': 1}))
+    # logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
+    return JsonResponse(bins)
     # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
 
 def send_new_bin(request):
