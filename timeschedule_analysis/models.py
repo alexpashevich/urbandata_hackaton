@@ -6,7 +6,7 @@ class City(models.Model):
         return self.name
 
 class Bin(models.Model):
-    x_coordiante = models.FloatField(null=True)
+    x_coordinate = models.FloatField(null=True)
     y_coordinate = models.FloatField(null=True)
     address = models.TextField(null=True)
     volume = models.IntegerField(null=True)

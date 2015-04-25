@@ -29,13 +29,19 @@ def get_all_bins(request):
     # if request.method == 'GET':
     logger.info('get_all_bins function')
     bins = Bin.objects.all()
+    bins_array = []
     for bin in bins:
+        bin_dict = {}
+        bin_dict['x_coordinate'] = bin.x_coordinate
+        bin_dict['y_coordinate'] = bin.y_coordinate
+        bin_dict['address'] = bin.address
+        bin_dict['volume'] = bin.volume
+        bin_dict['cur_filling'] = bin.cur_filling
         logger.info(bin)
-        logger.info(bin.x_coordiante)
-        logger.info(bin.y_coordiante)
-    # logger.info(JsonResponse({'a': 1}))
-    # logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
-    return JsonResponse({'a': 1})
+        # logger.info(bin.x_coordinate)
+        # logger.info(bin.y_coordinate)
+        bins_array.append(bin_dict)
+    return JsonResponse(bins_array)
     # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
 
 def send_new_bin(request):
