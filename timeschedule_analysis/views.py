@@ -30,5 +30,5 @@ def get_all_bins(request):
     logger = logging.getLogger('testlogger')
     logger.info('This is a simple log message')
     # print(bins)
-    # return JsonResponse({'a': 1})
-    return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
+    return JsonResponse({'a': 1})
+    # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
