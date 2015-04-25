@@ -7,6 +7,7 @@ import json
 import logging
 # from moocs.models import Mooc, Lesson, Module
 
+logger = logging.getLogger('testlogger')
 
 def register(request):
     if request.method == 'POST':
@@ -27,8 +28,7 @@ def dashboard(request):
 def get_all_bins(request):
     # if request.method == 'GET':
     # bins = Bin.objects.all()
-    logger = logging.getLogger('testlogger')
-    logger.info('This is a simple log message')
-    print(JsonResponse({'a': 1}))
+    logger.info('we are in get_all_bins function')
+    logger.info(JsonResponse({'a': 1}))
     return JsonResponse({'a': 1})
     # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
