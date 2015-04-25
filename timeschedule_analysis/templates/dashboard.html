@@ -123,6 +123,9 @@
 					containers.push(myGeoObject);
 				}
 
+				for (i = 0; i < 25; ++i) {
+					myMap.geoObjects.add(containers[i]);
+				}
 
 				
 					 /*var items = [];
@@ -145,7 +148,7 @@
 					balloonWithFields.open(coords, {
 						contentHeader: 'Введите объём контейнера',
 						contentBody: [
-							'<form class = "coolForm" id="addBin" method = "POST"><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
+							'<form class = "coolForm" id="addBin" method = "POST" action=""><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
 						]
 					})	
 					var realAdress,
@@ -163,10 +166,8 @@
 
 					
 
-					$('#addBin').submit(function(e){
-						e.preventDefault();
-						var weigth = $('#addBin').val();
-						alert(weigth);
+					//$('#addBin').submit(function(e){
+						alert('dfg');
 						$.ajax({
 							type: 'POST',
 							url: 'https://ancient-mountain-6186.herokuapp.com/send_new_bin/',
@@ -183,13 +184,11 @@
 							}
 						});
 						console.log('request sent');
-					}
-						)
+						
+					//})
 					
 
-				for (i = 0; i < 25; ++i) {
-					myMap.geoObjects.add(containers[i]);
-				}
+				
 
 				//setUpControls (myMap, myGeoObject);
 			});
