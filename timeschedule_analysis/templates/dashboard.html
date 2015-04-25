@@ -92,52 +92,49 @@
 						return Math.random() * (37.53399 - 37.49657) + 37.49657;
 				}
 
-				var containers = [];
-				for (i = 0; i < 25; i++) {
-					//alert('bin');	
-					a1 = getX();
-					a2 = getY();
-					var myGeoObject = new ymaps.GeoObject({
-						geometry: {
-							type: 'Rectangle',
 
-							coordinates: [
-				                [a1, a2],
-			            		[a1 + 0.0005, a2 + 0.0005]
-				            ]
-				        },
-				            properties: {
-				            	hintContent: 'Контейнер #7',
-				
-				            	balloonContentBody: [
-				            	'<div class = "ball"> Улица Первомайская, дом 40 <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
-				       
-				            }
-						}, {
-							draggable: true,
-					        // Цвет и прозрачность заливки.
-					        fillColor: '#ffff0022',
-					        // Цвет и прозрачность границ.
-					        
+				$.getJSON('/get_all_bins', function(data){ 
+							console.log(data);
+							console.log('fuck');
+							var obtainedData = JSON.parce(data);
+							for (i = 0; i < 7; i++) {
+								//alert('bin');	
+								a1 = obtainedData[i].x_coordinate;
+								a2 = obtainedData[i].y_coordinate;
+								var myGeoObject = new ymaps.GeoObject({
+									geometry: {
+										type: 'Rectangle',
+
+										coordinates: [
+							                [a1, a2],
+						            		[a1 + 0.0005, a2 + 0.0005]
+							            ]
+							        },
+							            properties: {
+							            	hintContent: 'Контейнер #7',
+							
+							            	balloonContentBody: [
+							            	'<div class = "ball"> obtainedData[i].address <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
+							       
+							            }
+									}, {
+										draggable: true,
+								        // Цвет и прозрачность заливки.
+								        fillColor: '#ffff0022',
+								        // Цвет и прозрачность границ.
+								        
+								});
+								containers.push(myGeoObject);
+							}
+
+						for (i = 0; i < 7; ++i) {
+							myMap.geoObjects.add(containers[i]);
+						}
 					});
-					containers.push(myGeoObject);
-				}
-
-				for (i = 0; i < 25; ++i) {
-					myMap.geoObjects.add(containers[i]);
-				}
 
 				
-					 /*var items = [];
-					 $.each(data, function(key, val) {
-					  		items.push('<li id="' + key + '">' + val + '</li>');
-					 });
-					 $('<ul/>', {
-					   'class': 'my-new-list',
-					   html: items.join('')
-					 }).appendTo('body');
-					});*/
 
+				
 				
 
 				//важно
@@ -160,11 +157,7 @@
 						realAdressText = realAdress.properties.get('name');
 						
 					})
-					$.getJSON('/get_all_bins', function(data){ 
-							console.log(data);
-							console.log('fuck');
-					});
-
+					
 					
 
 					//$('#addBin').submit(function(e){
