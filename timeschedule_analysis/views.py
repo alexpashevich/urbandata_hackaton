@@ -26,7 +26,7 @@ def dashboard(request):
 
 def get_all_bins(request):
     # if request.method == 'GET':
-    bins = Bin.objects.all()
+    # bins = Bin.objects.all()
     logger = logging.getLogger('testlogger')
     logger.info('This is a simple log message')
     # print(bins)
