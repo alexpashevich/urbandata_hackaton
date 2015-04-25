@@ -94,13 +94,10 @@
 
 
 				$.getJSON('/get_all_bins', function(data){ 
-						console.log(data);
-						console.log('fuck');
-						var obtainedData = JSON.parce(data);
-						for (i = 0; i < 7; i++) {
+						for (var i = 0; i < data.length; ++i) {
 							//alert('bin');	
-							a1 = obtainedData[i].x_coordinate;
-							a2 = obtainedData[i].y_coordinate;
+							a1 = data[i]['x_coordinate'];
+							a2 = data[i]['y_coordinate'];
 							var myGeoObject = new ymaps.GeoObject({
 								geometry: {
 									type: 'Rectangle',
@@ -114,7 +111,7 @@
 						            	hintContent: 'Контейнер #7',
 						
 						            	balloonContentBody: [
-						            	'<div class = "ball"> obtainedData[i].address <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
+						            	'<div class = "ball"> data[i].address <br> Текущая заполненность: 30% <br> Прогнозируемая дата вывоза: 25.04.2015 </div>'].join(''),
 						       
 						            }
 								}, {
@@ -124,7 +121,7 @@
 							        // Цвет и прозрачность границ.
 							        
 							});
-							myMap.geoObjects.add(containers[i]);
+							myMap.geoObjects.add(myGeoObject);
 						}
 					});
 
