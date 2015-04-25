@@ -42,7 +42,7 @@ def get_all_bins(request):
     return HttpResponse(dump, content_type='application/json')
 
 def send_new_bin(request):
+    if request.method == 'POST':
+        logger.info('POST')
     logger.info('send_new_bin function')
-    logger.info(request.data)
-    logger.info(request.data['x_coord'])
     return HttpResponse(json.dumps({'a': 1}), content_type='application/json')

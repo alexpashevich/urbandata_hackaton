@@ -165,33 +165,15 @@
 							console.log('fuck');
 					});
 
-					
-
-					//$('#addBin').submit(function(e){
-						//alert('dfg');
-
-						onSuccess = function() {
-								console.log('Success');
-							}; 
-						onError = function() {
-								console.log('Error');
-							}; 
-						$.post(
-							'/send_new_bin',
-							{
-								'x_coord': xCoord,
-								'y_coord': yCoord,
-								'realAdress' : realAdress
-							},
-							onSuccess
-							);
-						
-						console.log('request sent');
-						
-					//})
-					
-
-				
+					var cur_dict = {
+							'x_coord': xCoord,
+							'y_coord': yCoord
+						}
+					console.log(cur_dict);
+					$.post('/send_new_bin/', cur_dict, function() {
+							console.log('Success');
+					});
+					console.log('request sent');
 
 				//setUpControls (myMap, myGeoObject);
 			});
