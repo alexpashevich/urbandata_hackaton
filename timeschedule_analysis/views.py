@@ -28,8 +28,14 @@ def dashboard(request):
 def get_all_bins(request):
     # if request.method == 'GET':
     # bins = Bin.objects.all()
-    logger.info('we are in get_all_bins function')
+    logger.info('get_all_bins function')
     logger.info(JsonResponse({'a': 1}))
     logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
     return JsonResponse({'a': 1})
     # return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
+
+def send_new_bin(request):
+    logger.info('send_new_bin function')
+    logger.info(request.data)
+    logger.info(request.data['x_coord'])
+    return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
