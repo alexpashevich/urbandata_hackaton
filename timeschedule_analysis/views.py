@@ -29,7 +29,7 @@ def get_all_bins(request):
     # if request.method == 'GET':
     logger.info('get_all_bins function')
     bins = Bin.objects.all()
-    logger.info('bin received')
+    logger.info(bins)
     # logger.info(JsonResponse({'a': 1}))
     # logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
     return JsonResponse(bins)
