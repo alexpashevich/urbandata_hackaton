@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, JsonResponse
 import json
 
 # from moocs.models import Mooc, Lesson, Module
@@ -26,4 +26,5 @@ def dashboard(request):
 def get_all_bins(request):
     # if request.method == 'GET':
     bins = Bin.objects.all()
-    return HttpResponse(json.dumps(bins), content_type="application/json")
+    print(bins)
+    return JsonResponse({'a': 1}, content_type="application/json")
