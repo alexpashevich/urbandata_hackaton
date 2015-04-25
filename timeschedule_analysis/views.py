@@ -31,8 +31,8 @@ def get_all_bins(request):
     bins = Bin.objects.all()
     for bin in bins:
         logger.info(bin)
-        logger.info(bin['x_coordiante'])
-        logger.info(bin['y_coordiante'])
+        logger.info(bin.x_coordiante)
+        logger.info(bin.y_coordiante)
     # logger.info(JsonResponse({'a': 1}))
     # logger.info(HttpResponse(json.dumps({'a': 1}), content_type='application/json'))
     return JsonResponse({'a': 1})
