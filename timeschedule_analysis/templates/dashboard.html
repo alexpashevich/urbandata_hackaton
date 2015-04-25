@@ -169,21 +169,23 @@
 
 					//$('#addBin').submit(function(e){
 						//alert('dfg');
-						$.ajax({
-							type: 'POST',
-							url: 'send_new_bin',
-							data : {
+
+						onSuccess = function() {
+								console.log('Success');
+							}; 
+						onError = function() {
+								console.log('Error');
+							}; 
+						$.post(
+							'/send_new_bin',
+							{
 								'x_coord': xCoord,
 								'y_coord': yCoord,
-								'realAdress' : realAdress,
+								'realAdress' : realAdress
 							},
-							success: function() {
-								console.log('Success');
-							},
-							error: function () {
-								console.log('Fail');
-							}
-						});
+							onSuccess
+							);
+						
 						console.log('request sent');
 						
 					//})
