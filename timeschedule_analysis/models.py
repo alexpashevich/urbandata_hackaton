@@ -21,4 +21,4 @@ class Sample(models.Model):
     volume_old = models.IntegerField(null=True)
     volume_new = models.IntegerField(null=True)
     def __unicode__(self):
-        return "Sample of the container " + self.bin.address + ' ' + self.bin.date
+        return "Sample of the container " + self.bin.address + ' ' + self.date
