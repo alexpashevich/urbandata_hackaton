@@ -43,4 +43,19 @@ def get_all_bins(request):
 
 def send_new_bin(request):
     logger.info('send_new_bin function')
-    return HttpResponse(json.dumps({'a': 1}), content_type='application/json')
+    Bin.objects.create(x_coordinate=request.data['x_coordinate'],
+                       y_coordinate=request.data['y_coordinate'],
+                       address=request.data['address'],
+                       volume=request.data['volume'],
+                       cur_filling=0,
+                       city=City.objects.get(id=request.data['city_id']))
+    return HttpResponse('')
+
+# static fix
+# form
+# city
+
+
+
+
+
