@@ -126,7 +126,7 @@
 					});
 
 				
-
+				setUpControls (myMap);
 				
 				
 
@@ -138,7 +138,7 @@
 					balloonWithFields.open(coords, {
 						contentHeader: 'Введите объём контейнера',
 						contentBody: [
-							'<form class = "coolForm" id="addBin" method = "POST" action=""><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
+							'<form class = "coolForm" id="addBin" method = "POST"><input type = "text" size = "10%"></input> <input type = "submit" value = "Добавить" id="sendToServ"></input></form>'
 						]
 					})	
 					var realAdress,
@@ -148,10 +148,10 @@
 					ymaps.geocode(coords).then(function(res) {
 						realAdress = res.geoObjects.get(0);
 						realAdressText = realAdress.properties.get('name');
-						
 					})
 					
-					
+					var volume = 2000;
+					var c_id = 1;
 
 					//$('#addBin').submit(function(e){
 						//alert('dfg');
@@ -165,9 +165,11 @@
 						$.post(
 							'/send_new_bin',
 							{
-								'x_coord': xCoord,
-								'y_coord': yCoord,
-								'realAdress' : realAdress
+								'x_coordinate': xCoord,
+								'y_coordinate': yCoord,
+								'address' : realAdress,
+								'volume' : volume,
+								'city_id' : c_id
 							},
 							onSuccess
 							);
@@ -179,15 +181,15 @@
 
 				
 
-				//setUpControls (myMap, myGeoObject);
+				
 			});
 
 
-			/*function setUpControls(map, GeoObject) {
-				var btnSize = new ymaps.control.Button('Изменить размер');
+			function setUpControls(map, GeoObject) {
+				//var btnSize = new ymaps.control.Button('Изменить размер');
 				
-				btnSize.options.set('maxWidth', 200);
-				btnSize.events.add(['select', 'deselect'], function (e) {
+				//btnSize.options.set('maxWidth', 200);
+				/*btnSize.events.add(['select', 'deselect'], function (e) {
 					GeoObject.geometry.setCoordinates(e.get('type') == 'select' ? [
 			            [55, 37.66],
 			            [55.64, 37]
@@ -195,7 +197,7 @@
 			            [55.665, 53],
 			            [55.64, 51]
 			        ])
-				})
+				})*/
 				var addContainer = new ymaps.control.Button({
 					data: {
 						content: 'Добавить контейнер'
@@ -205,8 +207,8 @@
 					}});
 
 				map.controls.add(addContainer);
-				map.controls.add(btnSize);
-			};*/
+				//map.controls.add(btnSize);
+			};
 		}
 	});
 		</script>
