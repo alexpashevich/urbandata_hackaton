@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     # url(r'^moocs/(?P<mooc_id>\d+)/$', views.mooc, name='mooc'),
     url(r'^get_all_bins/$', views.get_all_bins, name='get_all_bins'),
     url(r'^send_new_bin/$', views.send_new_bin, name='send_new_bin'),
+    url(r'^get_all_cities/$', views.get_all_cities, name='get_all_cities'),
 )

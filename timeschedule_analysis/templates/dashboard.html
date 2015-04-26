@@ -53,6 +53,7 @@
 			margin: 0;
 			font-size: 15px;
 		}
+
 		#lineForAdd {
 			margin-top: 10px;
 			padding: 0.5%;
@@ -60,14 +61,30 @@
 		#blockForAdd {
 			visibility: hidden;
 		}
+
+
+		#lineForAdd {
+			margin-top: 100px;
+			padding: 0.5%;
+		}
+
+		#blockForAdd {
+			visibility: hidden;
+		}
+
+
 		#marker {
 			height: 15px;
 			width: 15px;
 			background-color: green;
 		}
+
+
+
 		#blockForAdd>div {
 			text-align: center;
 		}
+
 
 		.myclass {
 			font-size: 4em;
@@ -83,9 +100,20 @@
 			background-image: url(dolgopa.jpg);
 			background-size: cover;
 		}
+
+		#cityHeader {
+			padding: 0;
+			width: 100%;
+			height: 300px;
+			background-image: url(dolgopa.png);
+			background-size: cover;
+		}
+
+
 		#menu {
 			padding-right: 2%;
 		}
+
 
 		#cityInfo {
 			margin-top: 7%;
@@ -132,6 +160,12 @@
 		#scedule>div {
 
 		}
+
+		#scedule {
+			height: 400px;
+		}
+
+
 	
 		</style>
 
@@ -175,6 +209,13 @@
 
 
 			
+
+			
+
+
+
+
+
 			function init() {
 				var myMap = new ymaps.Map("map", {
 					center: [55.9313, 37.516143],
@@ -253,6 +294,7 @@
 						})
 						
 					});
+
 					var c_id = 1;
 					var i = 0;
 					$('#addBin').bind('submit', function(e){
@@ -284,6 +326,46 @@
 				});
 }
 
+						
+						var c_id = 1;
+						var i = 0;
+						$('#addBin').bind('submit', function(e){
+							if (i == 0) {
+								var volume = $('#volume').val();
+								onSuccess = function() {
+										console.log('Success');
+
+									}; 
+								onError = function() {
+										console.log('Error');
+									}; 
+								$.post(
+									'/send_new_bin/',
+									{
+										'x_coordinate': xCoord,
+										'y_coordinate': yCoord,
+										'address' : realAdressText,
+										'volume' : volume,
+										'city_id' : c_id
+									},
+									onSuccess
+									);
+									
+									console.log('request sent');
+									i++;
+								}
+							return false;
+						});
+					
+					
+
+				
+
+				
+			});
+
+
+
 			function setUpControls(map, GeoObject) {
 				var addContainer = new ymaps.control.Button({
 					data: {
@@ -311,7 +393,9 @@
 	      <span class="icon-bar"></span>
 	      <span class="icon-bar"></span>
 	    </button>
+
 	    <a class="navbar-brand navbar-center" href="#">ЗнайК</a>
+
 	  </div>
 	  <!-- Collection of nav links and other content for toggling -->
 	  <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -323,11 +407,13 @@
 	    
 	  </div>
 	</nav>
+
 	<div id="cityInfo">
 		<h1> Город: Долгопрудный </h1>
 		<h2> Контейнеров в городе: 100 </h2>
 		<h2> Население: 100 000 человек </h2>
 	</div>
+
 </div>
 <div id = "map"></div>
 <div class="row" id="lineForAdd" style="text-align: center;">
@@ -340,6 +426,7 @@
 <div class="row">
 	<div class = "col-xs-3"></div>
 	<div class="col-xs-3">
+
 		<span class="glyphicon glyphicon-map-marker myclass"></span>
 		<div> Выберите точку на карте <br> и нажмите на нее </div>
 	</div>
@@ -362,6 +449,20 @@
 					<button type="submit" class="btn"  id="sendToServ" style = "float: none"> Добавить </button>
 				</div>
 			</div>
+
+		<div> Выберите точку на катре <br> и нажмите на нее </div>
+	</div>
+	<div class="col-xs-3">
+		<div> Введите объем <br> нового контейнера </div>
+	</div>
+</div>		
+<div class="row">
+	<div class = "col-xs-4"></div>	
+	<div class = "col-xs-4" style = "text-align: center;">	
+		<form class="coolForm navbar-form pull-left id="addBin" method = "POST"">
+			<input type="text" class="span2" id= "volume" size = "20%" placeholder = "Объем контейнера">
+			<button type="submit" class="btn"  id="sendToServ"> Добавить </button>
+
 		</form>
 	</div>
 </div>
@@ -369,6 +470,7 @@
 </div>
 
 <div class="container" id = "scedule">
+
 <h2 style="color: grey; left: 0;"> График заполняемости контейнера</h2>
 <div class="row">
 	<div class="col-xs-1"></div>
@@ -381,6 +483,9 @@
 			</div>
 		</div>
 	</div>
+
+</div>
+
 </body>
 </html>
 

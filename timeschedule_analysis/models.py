@@ -13,7 +13,7 @@ class Bin(models.Model):
     cur_filling = models.IntegerField(null=True)
     city = models.ForeignKey(City, null=True)
     def __unicode__(self):
-        return "Container with address " + self.address
+        return "Container"
 
 class Sample(models.Model):
     bin = models.ForeignKey(Bin, null=True)
