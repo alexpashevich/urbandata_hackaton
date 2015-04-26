@@ -43,12 +43,15 @@ def get_all_bins(request):
 
 def send_new_bin(request):
     logger.info('send_new_bin function')
-    Bin.objects.create(x_coordinate=request.data['x_coordinate'],
-                       y_coordinate=request.data['y_coordinate'],
-                       address=request.data['address'],
-                       volume=request.data['volume'],
+    # logger.info(request)
+    # logger.info(request.POST.get('x_coordinate'))
+    bin = Bin.objects.create(x_coordinate=request.POST.get('x_coordinate'),
+                       y_coordinate=request.POST.get('y_coordinate'),
+                       address=request.POST.get('address'),
+                       volume=request.POST.get('volume'),
                        cur_filling=0,
-                       city=City.objects.get(id=request.data['city_id']))
+                       city=City.objects.get(id=request.POST.get('city_id')))
+    # logger.info(bin)
     return HttpResponse('')
 
 # static fix
